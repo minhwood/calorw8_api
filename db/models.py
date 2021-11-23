@@ -1,4 +1,5 @@
 from typing import Any
+from sqlalchemy.orm import relationship
 from sqlalchemy.sql.schema import Column, ForeignKey
 from sqlalchemy.sql.sqltypes import Float, Integer, String
 from sqlalchemy.ext.declarative import as_declarative, declared_attr
@@ -21,6 +22,7 @@ class Category(ModelBase):
     id = Column(Integer, primary_key=True)
     code = Column(Integer)
     name = Column(String(100))
+    foods = relationship("Food", back_populates="category")
 
 
 class Food(ModelBase):
@@ -32,7 +34,8 @@ class Food(ModelBase):
     date_of_pub = Column(String(255))
     country_code = Column(String(10))
     scientific_name = Column(String(100))
-
+    category = relationship("Category", back_populates="foods")
+    food_nutrients = relationship("FoodNutrient", back_populates="food")
 
 class Nutrient(ModelBase):
     id = Column(Integer, primary_key=True)
@@ -49,5 +52,5 @@ class FoodNutrient(ModelBase):
     food_id = Column(ForeignKey("food.id"))
     nutrient_id = Column(ForeignKey("nutrient.id"))
     nutrient_value = Column(Float)
-
-
+    food = relationship("Food", back_populates="food_nutrients")
+    nutrient = relationship("Nutrient")
