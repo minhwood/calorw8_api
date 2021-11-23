@@ -25,9 +25,9 @@ uvicorn main:app --reload
 
 ### Environment varriable:
 
-POSTGRES_SERVER: Postgres Host
-POSTGRES_USER: Postgres user name
-POSTGRES_PASSWORD: Postgres password
-POSTGRES_DB: Postgres database name
-POSTGRES_DATABASE_URI: Postgres database URI for connection
-DATASOURCE: Data source of the Cannada Food report for database migration purpose
+- **POSTGRES_SERVER**: Postgres Host
+- **POSTGRES_USER**: Postgres user name
+- **POSTGRES_PASSWORD**: Postgres password
+- **POSTGRES_DB**: Postgres database name
+- **POSTGRES_DATABASE_URI**: Postgres database URI for connection
+- **DATASOURCE**: Data source of the Cannada Food report for database migration purpose
