@@ -2,6 +2,7 @@
 
 - Python version: 3.8.10
 - Framework: Fast API
+- Data was extracted from Goverment of Cannada Nutrient File (2015) [https://www.canada.ca/en/health-canada/services/food-nutrition/healthy-eating/nutrient-data/canadian-nutrient-file-2015-download-files.html]
 
 ### Generate Alembic auto migration script
 ```
