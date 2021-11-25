@@ -4,5 +4,4 @@ jobs:
   Progress-Check:
     runs-on: ubuntu-lastest
     steps:
-      - name: Progress bellow
       - run : echo "deploying"
