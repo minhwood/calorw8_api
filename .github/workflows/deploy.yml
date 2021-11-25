@@ -5,4 +5,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Do something
-        run: echo "Test echo"
+        env:
+          POSTGRES_DB: ${{ secrets.HEROKU_POSTGRES_DB }} 
+        run: echo "$POSTGRES_DB"
