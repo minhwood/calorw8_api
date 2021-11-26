@@ -13,5 +13,6 @@ jobs:
           DATASOURCE: ${{ secrets.HEROKU_DATASOURCE }} 
           POSTGRES_PASSWORD: ${{ secrets.HEROKU_POSTGRES_PASSWORD }} 
         run: printenv > .env
+      - name: Show env
         run: cat .env
         
