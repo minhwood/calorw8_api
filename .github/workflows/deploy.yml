@@ -1,9 +1,15 @@
 name: Heroku Deploy
-on: [push]
+on: 
+  push:
+    branches:
+      - heroku-deploy
+
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
+
       - name: Set Environment variable
         env:
           POSTGRES_DB: ${{ secrets.HEROKU_POSTGRES_DB }} 
@@ -13,6 +19,22 @@ jobs:
           DATASOURCE: ${{ secrets.HEROKU_DATASOURCE }} 
           POSTGRES_PASSWORD: ${{ secrets.HEROKU_POSTGRES_PASSWORD }} 
         run: printenv | grep 'POSTGRES_DB\|POSTGRES_USER\|POSTGRES_DATABASE_URI\|DATASOURCE\|POSTGRES_SERVER\|POSTGRES_PASSWORD' > .env
-      - name: Show env
-        run: cat .env
+      
+      - name: Update environemnt variable to Dockerfile
+        run: source scripts/setup.sh
+
+      - name: Login Heroku Container Registry
+        env: 
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+        run: heroku container:login
+      
+      - name: Build and Push Image
+        env: 
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+        run: heroku container:push web --app calorw8
+        
+      - name: Release Image
+        env: 
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+        run: heroku container:release web --app calorw8
         

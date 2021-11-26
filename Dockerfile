@@ -6,11 +6,13 @@ RUN apt-get update \
     && apt-get -y install libpq-dev gcc \
     && pip install psycopg2
 RUN pip install -r requirements.txt
-ENV POSTGRES_SERVER=localhost:5432
-ENV POSTGRES_USER=developer
-ENV POSTGRES_PASSWORD=developer
-ENV POSTGRES_DB=calorw8_api
-ENV POSTGRES_DATABASE_URI=postgresql+psycopg2://developer:developer@localhost:5432/calorw8_api
-ENV DATASOURCE=/home/oliverwood98/Documents/CanadaFoodNutrientDatabase/cnf-fcen-csv
+ENV POSTGRES_SERVER=${POSTGRES_SERVER}
+ENV POSTGRES_USER=${POSTGRES_USER}
+ENV POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+ENV POSTGRES_DB=${POSTGRES_DB}
+ENV POSTGRES_DATABASE_URI=${POSTGRES_DATABASE_URI}
+ENV DATASOURCE=${DATASOURCE}
 
-CMD ["uvicorn", "main:app", "--host=0.0.0.0"]
+RUN chmod +x start.sh
+
+CMD ["./start.sh"]
