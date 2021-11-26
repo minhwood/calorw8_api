@@ -4,7 +4,7 @@ jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
     steps:
-      - name: Do something
+      - name: Set Environment variable
         env:
           POSTGRES_DB: ${{ secrets.HEROKU_POSTGRES_DB }} 
           POSTGRES_USER: ${{ secrets.HEROKU_POSTGRES_USER }} 
@@ -12,4 +12,6 @@ jobs:
           POSTGRES_DATABASE_URI: ${{ secrets.HEROKU_POSTGRES_DATABASE_URI }} 
           DATASOURCE: ${{ secrets.HEROKU_DATASOURCE }} 
           POSTGRES_PASSWORD: ${{ secrets.HEROKU_POSTGRES_PASSWORD }} 
+        run: printenv > .env
+        run: cat .env
         
