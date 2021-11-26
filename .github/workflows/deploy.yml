@@ -12,7 +12,7 @@ jobs:
           POSTGRES_DATABASE_URI: ${{ secrets.HEROKU_POSTGRES_DATABASE_URI }} 
           DATASOURCE: ${{ secrets.HEROKU_DATASOURCE }} 
           POSTGRES_PASSWORD: ${{ secrets.HEROKU_POSTGRES_PASSWORD }} 
-        run: printenv > .env
+        run: printenv | grep 'POSTGRES_DB\|POSTGRES_USER\|POSTGRES_DATABASE_URI\|DATASOURCE\|POSTGRES_SERVER\|POSTGRES_PASSWORD' > .env
       - name: Show env
         run: cat .env
         
